@@ -1,0 +1,11 @@
+.navLinkContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+}
+.navLink {
+  color: #ff914d;
+}
+.navLink:hover {
+  color: #e57f3d;
+}

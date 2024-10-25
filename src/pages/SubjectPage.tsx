@@ -1,77 +1,81 @@
 import { useParams } from 'react-router-dom';
 import { useSubjectContext } from '../utils/context/useSubjectContext';
+import { arrayOfNamesFormatting } from '../utils/namingFormat';
 
 export default function Subject() {
   const { subjects } = useSubjectContext();
   const { subject } = useParams();
 
   const foundSubject = subjects.find((item) => item.name === subject);
+
   const cours = foundSubject?.coursList;
+  const formattedCours = arrayOfNamesFormatting(cours || []);
   const td = foundSubject?.tdList;
+  const formattedTd = arrayOfNamesFormatting(td || []);
   const tp = foundSubject?.tpList;
-  console.log(foundSubject);
+  const formattedTp = arrayOfNamesFormatting(tp || []);
+
+  console.log(formattedCours, formattedTd, formattedTp);
 
   if (!foundSubject) {
     return <div>Subject not found</div>;
   }
 
   return (
-    <div>
-      <h1>{foundSubject.name}</h1>
-      <h2>Courses:</h2>
-      <div>
-        <ul>
-          {tp && tp.length > 0 ? (
-            tp.map((item, index) => (
-              <li key={index}>
-                {' '}
-                {/* Moved key to the <li> element */}
-                <a href={item} download>
-                  {item}
-                </a>
-              </li>
-            ))
-          ) : (
-            <li>No Td available.</li>
-          )}
-        </ul>
-      </div>
-      <div>
-        <ul>
-          {td && td.length > 0 ? (
-            td.map((item, index) => (
-              <li key={index}>
-                {' '}
-                {/* Moved key to the <li> element */}
-                <a href={item} download>
-                  {item}
-                </a>
-              </li>
-            ))
-          ) : (
-            <li>No Td available.</li>
-          )}
-        </ul>
-      </div>
-      <div>
+    <div className="subjectContainer">
+      <h1 className="subjectNameHeader">{foundSubject.name}</h1>
+      <div className="subjectCoursesContainer">
+        <h2 className="subjectTypeHeader">Cours:</h2>
         <ul>
           {cours && cours.length > 0 ? (
             cours.map((item, index) => (
               <li>
                 {' '}
                 <a key={index} href={item} download={true}>
-                  {item}
+                  {formattedCours[index]}
                 </a>{' '}
               </li>
-              // Render each course as a list item
             ))
           ) : (
-            <li>No courses available.</li> // Handle case when there are no courses
+            <li>No courses available.</li>
           )}
         </ul>
       </div>
-
-      {/* Render more details about the subject here */}
+      <div className="subjectCoursesContainer">
+        <h2 className="subjectTypeHeader">TD:</h2>
+        <ul>
+          {td && td.length > 0 ? (
+            td.map((item, index) => (
+              <li key={index}>
+                {' '}
+                <a className="pdfLink" href={item} download>
+                  {formattedTd[index]}
+                </a>
+              </li>
+            ))
+          ) : (
+            <li>No Td available.</li>
+          )}
+        </ul>
+      </div>
+      <div className="subjectCoursesContainer">
+        <h2 className="subjectTypeHeader">TP:</h2>
+        <ul>
+          {tp && tp.length > 0 ? (
+            tp.map((item, index) => (
+              <li key={index}>
+                {' '}
+                {/* Moved key to the <li> element */}
+                <a className="pdfLink" href={item} download>
+                  {formattedTp[index]}
+                </a>
+              </li>
+            ))
+          ) : (
+            <li>No Td available.</li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 }
