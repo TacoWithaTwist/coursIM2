@@ -1,0 +1,15 @@
+.subjectContainer {
+  background-color: #f4f3ef;
+}
+.subjectNameHeader {
+  color: #242424;
+}
+.subjectTypeHeader {
+  color: #242424;
+}
+.pdfLink {
+  color: #ff914d;
+}
+.pdfLink:hover {
+  color: #c0672f;
+}
