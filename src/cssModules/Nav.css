@@ -1,11 +1,20 @@
 .navLinkContainer {
   display: flex;
   flex-direction: column;
-  gap: 10%;
+  gap: 25px;
+}
+ul {
+  list-style-type: none;
 }
 .navLink {
-  color: #ff914d;
+  font-size: 1.1em;
+  font-weight: 200;
+  color: #ffffff;
+  text-align: left;
 }
 .navLink:hover {
-  color: #e57f3d;
+  color: #ff914d;
+}
+.logo {
+  width: 100px;
 }
