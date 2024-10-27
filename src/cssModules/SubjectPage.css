@@ -13,3 +13,16 @@
 .pdfLink:hover {
   color: #c0672f;
 }
+.subjectTotalCoursesContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20%;
+}
+.subjectCoursesContainer {
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: solid 2px black;
+  width: 30%;
+}
